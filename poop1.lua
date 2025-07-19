@@ -73,10 +73,12 @@ local toggl3 = Tab:CreateToggle({
    end,
 })
 local Button2 = Tab:CreateButton({
-   Name = "Teleport to poop seller(trash method)",
+   Name = "Sell poop (a little buggy)",
    Callback = function()
 		local player = game.Players.LocalPlayer
 		player.Character.HumanoidRootPart.CFrame = workspace.PoopSellerNPC.HumanoidRootPart.CFrame
+		task.wait(0.15)
+		game.ReplicatedStorage.PoopStartDialogue:FireServer()
    end,
 })
 
