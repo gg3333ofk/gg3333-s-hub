@@ -58,6 +58,23 @@ local Toggle = Tab:CreateToggle({
 
    end,
 })
+local toggl3 = Tab:CreateToggle({
+   Name = "Double RapidPoops Exploit",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   Value1 = Value
+   while Value1 == true do
+		game.ReplicatedStorage.PoopChargeStart:FireServer()
+		game.ReplicatedStorage.PoopEvent:FireServer()
+		task.wait(0.001)
+		game.ReplicatedStorage.PoopChargeStart:FireServer()
+		game.ReplicatedStorage.PoopEvent:FireServer()
+		task.wait(0.25)
+   end
+
+   end,
+})
 local Button2 = Tab:CreateButton({
    Name = "Teleport to poop seller(trash method)",
    Callback = function()
