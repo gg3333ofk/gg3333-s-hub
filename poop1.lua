@@ -65,3 +65,5 @@ local Button2 = Tab:CreateButton({
 		player.Character.HumanoidRootPart.CFrame = workspace.PoopSellerNPC.HumanoidRootPart.CFrame
    end,
 })
+
+local Label = Tab:CreateLabel("Auto Sell - IN DEVELOPING")
