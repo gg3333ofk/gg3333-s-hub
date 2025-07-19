@@ -53,7 +53,7 @@ local Toggle = Tab:CreateToggle({
    while Value1 == true do
 		game.ReplicatedStorage.PoopChargeStart:FireServer()
 		game.ReplicatedStorage.PoopEvent:FireServer()
-		task.wait(0.25)
+		task.wait(0.45)
    end
 
    end,
@@ -67,10 +67,7 @@ local toggl3 = Tab:CreateToggle({
    while Value1 == true do
 		game.ReplicatedStorage.PoopChargeStart:FireServer()
 		game.ReplicatedStorage.PoopEvent:FireServer()
-		task.wait(0.001)
-		game.ReplicatedStorage.PoopChargeStart:FireServer()
-		game.ReplicatedStorage.PoopEvent:FireServer()
-		task.wait(0.25)
+		task.wait(0.23)
    end
 
    end,
