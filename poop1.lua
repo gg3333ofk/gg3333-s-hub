@@ -27,7 +27,7 @@ local Window = Rayfield:CreateWindow({
 })
 
 local Tab = Window:CreateTab("Poop Roblox Game", 4483362458) -- Title, Image
-local Section = Tab:CreateSection("Main")
+local Section = Tab:CreateSection("Exploits")
 
 Rayfield:Notify({
    Title = "gg3333's hub injected",
@@ -72,14 +72,12 @@ local toggl3 = Tab:CreateToggle({
 
    end,
 })
+local Label = Tab:CreateLabel("Auto Sell - IN DEVELOPING")
+local Section = Tab:CreateSection("Other")
 local Button2 = Tab:CreateButton({
-   Name = "Sell poop (a little buggy)",
+   Name = "Sell poop (Teleports to NPC Seller)",
    Callback = function()
 		local player = game.Players.LocalPlayer
 		player.Character.HumanoidRootPart.CFrame = workspace.PoopSellerNPC.HumanoidRootPart.CFrame
-		task.wait(0.15)
-		game.ReplicatedStorage.PoopStartDialogue:FireServer()
    end,
 })
-
-local Label = Tab:CreateLabel("Auto Sell - IN DEVELOPING")
