@@ -72,7 +72,6 @@ local toggl3 = Tab:CreateToggle({
 
    end,
 })
-local Label = Tab:CreateLabel("Auto Sell - IN DEVELOPING")
 local Section = Tab:CreateSection("Other")
 local Button2 = Tab:CreateButton({
    Name = "Sell poop (Teleports to NPC Seller)",
@@ -81,3 +80,22 @@ local Button2 = Tab:CreateButton({
 		player.Character.HumanoidRootPart.CFrame = workspace.PoopSellerNPC.HumanoidRootPart.CFrame
    end,
 })
+
+local Section2 = Tab:CreateSection("Fun")
+local Button3 = Tab:CreateButton({
+   Name = "Spawn a poop(Client, Only you seeing this)",
+   Callback = function()
+   		local Clon = game.ReplicatedStorage.ClassicDogPoop:Clone()
+		Clon.Parent = workspace
+   end,
+})
+local Button2 = Tab:CreateButton({
+   Name = "Delete all poops(Client)",
+   Callback = function()
+   		for _, i in pairs(workspace:GetChildren()) do
+			   if i.Name == "ClassicDogPoop" then
+				   i:Destroy()
+			   end
+		end
+   end,
+})    
