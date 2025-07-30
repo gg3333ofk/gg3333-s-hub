@@ -112,3 +112,26 @@ local Button2d = Tab:CreateButton({
 		workspace.PoopSellerNPC.HumanoidRootPart.CFrame = previpos
    end,
 })
+local plrs = nil
+local Input = Tab:CreateInput({
+   Name = "Player",
+   PlaceholderText = "Enter nickname",
+   RemoveTextAfterFocusLost = false,
+   Callback = function(Text)
+	plrs = Text
+   end,
+})
+local locPlr = game.Players.LocalPlayer
+local Toggle = Tab:CreateToggle({
+   Name = "Teleport to player",
+   CurrentValue = false,
+   Flag = "Toggle1",
+   Callback = function(Value)
+	val1 = Value
+
+	while val1 == true do
+		task.wait(0.1)
+		locPlr.Character.HumanoidRootPart.CFrame = game.Players[plrs].Character.HumanoidRootPart.CFrame + Vector3.new(0, 4, 0)
+	end
+   end,
+})
