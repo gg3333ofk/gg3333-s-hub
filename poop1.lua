@@ -81,6 +81,23 @@ local Button2 = Tab:CreateButton({
    end,
 })
 
+local toggl3 = Tab:CreateToggle({
+   Name = "Optimization(Client)",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   Value1 = Value
+   while Value1 == true and game:GetService("RunService").RenderStepped:Wait() do
+		for _, i in pairs(workspace:GetChildren()) do
+			if i.Name == "Poop" then
+				i:Destroy()
+			end
+		end
+   end
+
+   end,
+})
+
 local Section2 = Tab:CreateSection("Fun")
 local Button3 = Tab:CreateButton({
    Name = "Spawn a poop(Client, Only you seeing this)",
@@ -135,3 +152,4 @@ local Toggle = Tab:CreateToggle({
 	end
    end,
 })
+
