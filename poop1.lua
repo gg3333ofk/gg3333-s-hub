@@ -98,4 +98,17 @@ local Button2 = Tab:CreateButton({
 			   end
 		end
    end,
-})    
+})
+local previpos = workspace.PoopSellerNPC.HumanoidRootPart.CFrame
+local Button3d = Tab:CreateButton({
+   Name = "Teleport NPC to you",
+   Callback = function()
+		workspace.PoopSellerNPC.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+   end,
+})
+local Button2d = Tab:CreateButton({
+   Name = "Teleport NPC to default position",
+   Callback = function()
+		workspace.PoopSellerNPC.HumanoidRootPart.CFrame = previpos
+   end,
+})
