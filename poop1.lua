@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "Poop -- Script",
+   Name = "Poop -- Scripted",
    LoadingTitle = "UI - Rayfield",
    LoadingSubtitle = "by gg3333",
    ConfigurationSaving = {
@@ -43,9 +43,8 @@ Rayfield:Notify({
    },
 },
 })
-local Label = Tab:CreateLabel("RapidPoops Exploit STATUS: WORKING")
 local Toggle = Tab:CreateToggle({
-   Name = "RapidPoops Exploit(SAFE FROM KICK)",
+   Name = "RapidPoops Exploit(SAFE FROM KICK) [Working]",
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
@@ -59,7 +58,7 @@ local Toggle = Tab:CreateToggle({
    end,
 })
 local toggl3 = Tab:CreateToggle({
-   Name = "Double RapidPoops Exploit",
+   Name = "Double RapidPoops Exploit [Working]",
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
@@ -70,6 +69,21 @@ local toggl3 = Tab:CreateToggle({
 		task.wait(0.23)
    end
 
+   end,
+})
+local Toggle = Tab:CreateToggle({
+   Name = "Auto Sell [Working]",
+   CurrentValue = false,
+   Flag = "Toggle1",
+   Callback = function(Value)
+	val1 = Value
+
+	while val1 == true do
+		task.wait(0.45)
+		game.ReplicatedStorage.PoopStartDialogue:FireServer()
+		game.ReplicatedStorage.PoopResponseChosen:FireServer("1. [Sure, take my poop!]")
+		game.ReplicatedStorage.PoopResponseChosen:FireServer("2. [I want to sell my inventory.]")
+	end
    end,
 })
 local Section = Tab:CreateSection("Other")
@@ -152,4 +166,3 @@ local Toggle = Tab:CreateToggle({
 	end
    end,
 })
-
