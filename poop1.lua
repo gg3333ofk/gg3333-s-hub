@@ -1,168 +1,65 @@
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
-
-local Window = Rayfield:CreateWindow({
-   Name = "Poop -- Scripted",
-   LoadingTitle = "UI - Rayfield",
-   LoadingSubtitle = "by gg3333",
-   ConfigurationSaving = {
-      Enabled = true,
-      FolderName = nil,
-      FileName = "gg3333's hub"
-   },
-   Discord = {
-      Enabled = false,
-      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
-      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
-   },
-   KeySystem = false, -- Set this to true to use our key system
-   KeySettings = {
-      Title = "No key",
-      Subtitle = "Key System",
-      Note = "No method of obtaining the key is provided",
-      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
-      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-      Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
-   }
-})
-
-local Tab = Window:CreateTab("Poop Roblox Game", 4483362458) -- Title, Image
-local Section = Tab:CreateSection("Exploits")
-
-Rayfield:Notify({
-   Title = "gg3333's hub injected",
-   Content = "Successfully injected",
-   Duration = 6.5,
-   Image = 4483362458,
-   Actions = { -- Notification Buttons
-      Ignore = {
-         Name = "Okay!",
-         Callback = function()
-         print("Successfully activated the script!")
-      end
-   },
-},
-})
-local Toggle = Tab:CreateToggle({
-   Name = "RapidPoops Exploit(SAFE FROM KICK) [Working]",
-   CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-   Value1 = Value
-   while Value1 == true do
-		game.ReplicatedStorage.PoopChargeStart:FireServer()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Robojini/Tuturial_UI_Library/main/UI_Template_1"))()
+local Window = Library.CreateLib("Poop Scripted", "RJTheme3")
+local Tab = Window:NewTab("Main")
+local Section = Tab:NewSection("Exploits")
+local stt = false
+Section:NewToggle("Rapid-Poops Exploit(safe)", "Toggle", function(state)
+    print(state)
+    stt = state
+    while stt == true do
+        game.ReplicatedStorage.PoopChargeStart:FireServer()
 		game.ReplicatedStorage.PoopEvent:FireServer()
 		task.wait(0.45)
-   end
-
-   end,
-})
-local toggl3 = Tab:CreateToggle({
-   Name = "Double RapidPoops Exploit [Working]",
-   CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-   Value1 = Value
-   while Value1 == true do
-		game.ReplicatedStorage.PoopChargeStart:FireServer()
+    end
+end)
+Section:NewToggle("Double Rapid-Poops Exploit(it can crash the server!)", "Toggle", function(state)
+    print(state)
+    stt = state
+    while stt == true do
+        game.ReplicatedStorage.PoopChargeStart:FireServer()
 		game.ReplicatedStorage.PoopEvent:FireServer()
 		task.wait(0.23)
-   end
-
-   end,
-})
-local Toggle = Tab:CreateToggle({
-   Name = "Auto Sell [Working]",
-   CurrentValue = false,
-   Flag = "Toggle1",
-   Callback = function(Value)
-	val1 = Value
-
-	while val1 == true do
-		task.wait(0.45)
+    end
+end)
+Section:NewToggle("Auto Sell Exploit", "Toggle", function(state)
+    print(state)
+    stt = state
+    while stt == true do
 		game.ReplicatedStorage.PoopStartDialogue:FireServer()
 		game.ReplicatedStorage.PoopResponseChosen:FireServer("1. [Sure, take my poop!]")
 		game.ReplicatedStorage.PoopResponseChosen:FireServer("2. [I want to sell my inventory.]")
-	end
-   end,
-})
-local Section = Tab:CreateSection("Other")
-local Button2 = Tab:CreateButton({
-   Name = "Sell poop (Teleports to NPC Seller)",
-   Callback = function()
-		local player = game.Players.LocalPlayer
-		player.Character.HumanoidRootPart.CFrame = workspace.PoopSellerNPC.HumanoidRootPart.CFrame
-   end,
-})
-
-local toggl3 = Tab:CreateToggle({
-   Name = "Optimization(Client)",
-   CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-   Value1 = Value
-   while Value1 == true and game:GetService("RunService").RenderStepped:Wait() do
+        task.wait(0.45)
+    end
+end)
+local Section = Tab:NewSection("Other")
+Section:NewToggle("Optimization(Client)", "Toggle", function(state)
+    print(state)
+    stt = state
+    while stt == true and game:GetService("RunService").RenderStepped:Wait() do
 		for _, i in pairs(workspace:GetChildren()) do
 			if i.Name == "Poop" then
 				i:Destroy()
 			end
 		end
-   end
-
-   end,
-})
-
-local Section2 = Tab:CreateSection("Fun")
-local Button3 = Tab:CreateButton({
-   Name = "Spawn a poop(Client, Only you seeing this)",
-   Callback = function()
-   		local Clon = game.ReplicatedStorage.ClassicDogPoop:Clone()
-		Clon.Parent = workspace
-   end,
-})
-local Button2 = Tab:CreateButton({
-   Name = "Delete all poops(Client)",
-   Callback = function()
-   		for _, i in pairs(workspace:GetChildren()) do
-			   if i.Name == "ClassicDogPoop" then
-				   i:Destroy()
-			   end
+    end
+end)
+local Section = Tab:NewSection("Fun")
+Section:NewButton("Spawn a poop(Client)", "Button", function()
+    local Clon = game.ReplicatedStorage.ClassicDogPoop:Clone()
+	Clon.Parent = workspace
+end)
+Section:NewButton("Delete all poops(Client)", "Button", function()
+    for _, i in pairs(workspace:GetChildren()) do
+		if i.Name == "ClassicDogPoop" then
+			i:Destroy()
 		end
-   end,
-})
-local previpos = workspace.PoopSellerNPC.HumanoidRootPart.CFrame
-local Button3d = Tab:CreateButton({
-   Name = "Teleport NPC to you",
-   Callback = function()
-		workspace.PoopSellerNPC.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-   end,
-})
-local Button2d = Tab:CreateButton({
-   Name = "Teleport NPC to default position",
-   Callback = function()
-		workspace.PoopSellerNPC.HumanoidRootPart.CFrame = previpos
-   end,
-})
-local plrs = nil
-local Input = Tab:CreateInput({
-   Name = "Player",
-   PlaceholderText = "Enter nickname",
-   RemoveTextAfterFocusLost = false,
-   Callback = function(Text)
-	plrs = Text
-   end,
-})
-local locPlr = game.Players.LocalPlayer
-local Toggle = Tab:CreateToggle({
-   Name = "Teleport to player",
-   CurrentValue = false,
-   Flag = "Toggle1",
-   Callback = function(Value)
-	val1 = Value
-
-	while val1 == true do
-		task.wait(0.1)
-		locPlr.Character.HumanoidRootPart.CFrame = game.Players[plrs].Character.HumanoidRootPart.CFrame + Vector3.new(0, 4, 0)
 	end
-   end,
-})
+end)
+local previpos = workspace.PoopSellerNPC.HumanoidRootPart.CFrame
+Section:NewButton("Teleport NPC to you", "Button", function()
+    workspace.PoopSellerNPC.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+end)
+local previpos = workspace.PoopSellerNPC.HumanoidRootPart.CFrame
+Section:NewButton("Teleport NPC to default position", "Button", function()
+    workspace.PoopSellerNPC.HumanoidRootPart.CFrame = previpos
+end)
