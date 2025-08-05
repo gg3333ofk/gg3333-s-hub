@@ -5,24 +5,37 @@ local plr3 = nil
 local plr2 = nil
 local Section = Tab:NewSection("Players")
 
-Section:NewTextBox("Player's nickname", "nickname lol", function(txt)
+if not game.Players.LocalPlayer.Backpack:FindFirstChild("Stretcher") then
+    game.ReplicatedStorage.RE["1Too1l"]:InvokeServer("PickingTools", "Stretcher")
+end
+Section:NewTextBox("Player's nickname(And press Enter)", "Press enter!!!!!", function(txt)
     plr3 = txt
 end)
 Section:NewButton("Kill Player", "ButtonInfo", function()
-    game.ReplicatedStorage.RE["1Too1l"]:InvokeServer("PickingTools", "ShoppingCart")
     local plr = game.Players.LocalPlayer
     local name = game.Players.LocalPlayer.Name
     print(plr3)
     plr2 = game.Players[plr3]
-    plr.Backpack.ShoppingCart.Parent = workspace[name]
-    local prevpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-    wait(0.05)
-    for i = 0, 80 do
-        plr.Character.HumanoidRootPart.CFrame = plr2.Character.HumanoidRootPart.CFrame + (-plr2.Character.HumanoidRootPart.CFrame.LookVector * 4) - Vector3.new(0, 1.50, 0)
-        task.wait(0.025)
+    if workspace[name]:FindFirstChild("Stretcher") then
+        workspace[name].Stretcher.Parent = plr.Backpack
     end
-    for i = 0, 10 do
-        plr.Character.HumanoidRootPart.CFrame = CFrame.new(100000, -5, 0)
-        task.wait(0.01)
+    if plr.Backpack:FindFirstChild("Stretcher") then
+        plr.Backpack.Stretcher.Parent = workspace[name]
+        local prevpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        wait(0.05)
+        for i = 0, 25 do
+            plr.Character.HumanoidRootPart.CFrame = plr2.Character.HumanoidRootPart.CFrame + (-plr2.Character.HumanoidRootPart.CFrame.LookVector * 4.25)
+            wait(0.003)
+        end
+        for i = 0, 60 do
+            plr.Character.HumanoidRootPart.CFrame += Vector3.new(75, -0.2, 0)
+            wait(0.007)
+        end
+
+        wait(0.80)
+        workspace[name].Stretcher.Parent = plr.Backpack
+        wait(0.5)
+        plr.Character.HumanoidRootPart.CFrame = prevpos
     end
+
 end)
