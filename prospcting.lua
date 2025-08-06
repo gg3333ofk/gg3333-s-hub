@@ -9,7 +9,7 @@ Section:NewButton("Sell All", "sell all lol", function()
     plr.Character.HumanoidRootPart.CFrame = CFrame.new(-4, 25, 43)
     game.ReplicatedStorage.Remotes.Shop.GetInventorySellPrice:InvokeServer()
     game.ReplicatedStorage.Remotes.Shop.SellAll:InvokeServer()
-    game:GetService("RunService").RenderStepped:Wait()
+    task.wait(0.25)
     plr.Character.HumanoidRootPart.CFrame = prevpos + Vector3.new(0, 65, 0)
     game:GetService("RunService").RenderStepped:Wait()
     plr.Character.HumanoidRootPart.CFrame = prevpos
@@ -23,7 +23,6 @@ Section:NewToggle("Auto Shaking", "No requires", function(state)
         plr.Character.HumanoidRootPart.CFrame = CFrame.new(-82, 9, 38)
         for _, i in pairs(workspace.Characters[game.Players.LocalPlayer.Name]:GetChildren()) do
             if i:FindFirstChild("Rewards") then
-                
                 print(i.Name)
                 game.Players.LocalPlayer.Character[i.Name].Scripts.Pan:InvokeServer()
                 game.Players.LocalPlayer.Character[i.Name].Scripts.Shake:FireServer()
@@ -36,3 +35,20 @@ Section:NewToggle("Auto Shaking", "No requires", function(state)
         plr.Character.HumanoidRootPart.Anchored = false
     end
 end)
+Section:NewToggle("Auto Pan (check an info) [IN DEV]", "hold Mouse 1", function(state)
+    stst = state
+    while stst == true do
+        game:GetService("RunService").RenderStepped:Wait()
+        for _, i in pairs(workspace.Characters[game.Players.LocalPlayer.Name]:GetChildren()) do
+            if i:FindFirstChild("Rewards") then
+                workspace:WaitForChild("Characters")[game.Players.LocalPlayer.Name][i.Name].Scripts.ToggleShovelActive:FireServer(true)
+                workspace:WaitForChild("Characters")[game.Players.LocalPlayer.Name][i.Name].Scripts.Pan:InvokeServer()
+                workspace:WaitForChild("Characters")[game.Players.LocalPlayer.Name][i.Name].Scripts.Collect:InvokeServer()
+                workspace:WaitForChild("Characters")[game.Players.LocalPlayer.Name][i.Name].Scripts.Pan:InvokeServer()
+                workspace:WaitForChild("Characters")[game.Players.LocalPlayer.Name][i.Name].Scripts.Collect:InvokeServer(1.0)
+                workspace:WaitForChild("Characters")[game.Players.LocalPlayer.Name][i.Name].Scripts.Pan:InvokeServer()
+            end
+        end
+    end
+end)
+
