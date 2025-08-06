@@ -8,10 +8,10 @@ local Section = Tab:NewSection("Players")
 if not game.Players.LocalPlayer.Backpack:FindFirstChild("Stretcher") then
     game.ReplicatedStorage.RE["1Too1l"]:InvokeServer("PickingTools", "Stretcher")
 end
-Section:NewTextBox("Player's nickname(And press Enter)", "Press enter!!!!!", function(txt)
+Section:NewTextBox("Player's nickname(And press Enter)", "Lots of bugs", function(txt)
     plr3 = txt
 end)
-Section:NewButton("Kill Player", "ButtonInfo", function()
+Section:NewButton("Kill Player", "it may not work with people who have a weak device", function()
     local plr = game.Players.LocalPlayer
     local name = game.Players.LocalPlayer.Name
     print(plr3)
@@ -23,13 +23,13 @@ Section:NewButton("Kill Player", "ButtonInfo", function()
         plr.Backpack.Stretcher.Parent = workspace[name]
         local prevpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
         wait(0.05)
-        for i = 0, 25 do
-            plr.Character.HumanoidRootPart.CFrame = plr2.Character.HumanoidRootPart.CFrame + (-plr2.Character.HumanoidRootPart.CFrame.LookVector * 4.25)
-            wait(0.003)
+        for i = 0, 225 do
+            plr.Character.HumanoidRootPart.CFrame = plr2.Character.HumanoidRootPart.CFrame + (-plr2.Character.HumanoidRootPart.CFrame.LookVector * 4.1) + Vector3.new(0, -0.65, 0)
+            game:GetService("RunService").RenderStepped:Wait()
         end
-        for i = 0, 60 do
-            plr.Character.HumanoidRootPart.CFrame += Vector3.new(75, -0.2, 0)
-            wait(0.007)
+        for i = 0, 400 do
+            plr.Character.HumanoidRootPart.CFrame += Vector3.new(12.5, -0.25, 0)
+            game:GetService("RunService").RenderStepped:Wait()
         end
 
         wait(0.80)
