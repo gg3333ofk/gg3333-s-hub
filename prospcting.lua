@@ -38,7 +38,7 @@ end)
 Section:NewToggle("Auto Pan (check an info) [IN DEV]", "hold Mouse 1", function(state)
     stst = state
     while stst == true do
-        game:GetService("RunService").RenderStepped:Wait()
+        task.wait(0.00000001)
         for _, i in pairs(workspace.Characters[game.Players.LocalPlayer.Name]:GetChildren()) do
             if i:FindFirstChild("Rewards") then
                 workspace:WaitForChild("Characters")[game.Players.LocalPlayer.Name][i.Name].Scripts.ToggleShovelActive:FireServer(true)
@@ -47,8 +47,9 @@ Section:NewToggle("Auto Pan (check an info) [IN DEV]", "hold Mouse 1", function(
                 workspace:WaitForChild("Characters")[game.Players.LocalPlayer.Name][i.Name].Scripts.Pan:InvokeServer()
                 workspace:WaitForChild("Characters")[game.Players.LocalPlayer.Name][i.Name].Scripts.Collect:InvokeServer(1.0)
                 workspace:WaitForChild("Characters")[game.Players.LocalPlayer.Name][i.Name].Scripts.Pan:InvokeServer()
+                game.ReplicatedStorage.Modules.Utility.TweenServicePlus.SyncedTime.DelayedRequestEvent:InvokeServer(-12345)
+                
             end
         end
     end
 end)
-
