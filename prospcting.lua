@@ -21,9 +21,15 @@ Section:NewToggle("Auto Shaking", "No requires", function(state)
     prev = plr.Character.HumanoidRootPart.CFrame
     while stst == true and game:GetService("RunService").RenderStepped:Wait() do
         plr.Character.HumanoidRootPart.CFrame = CFrame.new(-82, 9, 38)
+        for _, i in pairs(workspace.Characters[game.Players.LocalPlayer.Name]:GetChildren()) do
+            if i:FindFirstChild("Rewards") then
+                
+                print(i.Name)
+                game.Players.LocalPlayer.Character[i.Name].Scripts.Pan:InvokeServer()
+                game.Players.LocalPlayer.Character[i.Name].Scripts.Shake:FireServer()
+            end
+        end
         plr.Character.HumanoidRootPart.Anchored = true
-        game.Players.LocalPlayer.Character["Plastic Pan"].Scripts.Pan:InvokeServer()
-        game.Players.LocalPlayer.Character["Plastic Pan"].Scripts.Shake:FireServer()
     end
     if stst == false then
         plr.Character.HumanoidRootPart.CFrame = prev
