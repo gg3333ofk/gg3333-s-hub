@@ -26,6 +26,7 @@ Section:NewToggle("Auto Shaking", "No requires", function(state)
                 print(i.Name)
                 game.Players.LocalPlayer.Character[i.Name].Scripts.Pan:InvokeServer()
                 game.Players.LocalPlayer.Character[i.Name].Scripts.Shake:FireServer()
+                game.ReplicatedStorage.Remotes.Info.ClaimCollectionReward:FireServer(game.ReplicatedStorage.Items.Valuables.Ashvein.Name)
             end
         end
         plr.Character.HumanoidRootPart.Anchored = true
@@ -52,4 +53,11 @@ Section:NewToggle("Auto Pan (check an info) [IN DEV]", "hold Mouse 1", function(
             end
         end
     end
+end)
+local Section = Tab:NewSection("Fun")
+Section:NewTextBox("Fake Money", "fake money(working)", function(txt)
+    game.Players.LocalPlayer.leaderstats.Money.Value = txt
+end)
+Section:NewTextBox("Fake Level", "fake level(working)", function(txt)
+    game.Players.LocalPlayer.leaderstats.Level.Value = txt
 end)
