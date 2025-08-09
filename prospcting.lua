@@ -1,12 +1,12 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Robojini/Tuturial_UI_Library/main/UI_Template_1"))()
-local Window = Library.CreateLib("Prospecting! [BETA SCRIPT]", "RJTheme5")
+local Window = Library.CreateLib("Prospecting! Scripted", "RJTheme5")
 local Tab = Window:NewTab("Main")
 local Section = Tab:NewSection("Farming")
 local stt = nil
 local plr = game.Players.LocalPlayer
 local prevspeed = plr.Character.Humanoid.WalkSpeed
-local prevjump= plr.Character.Humanoid.JumpPower
-Section:NewButton("Sell All", "Bypass soon...", function()
+local prevjump = plr.Character.Humanoid.JumpHeight
+Section:NewButton("Sell All", "no bypass", function()
     local prevpos = plr.Character.HumanoidRootPart.CFrame
     plr.Character.HumanoidRootPart.CFrame = CFrame.new(-4, 25, 43)
     game.ReplicatedStorage.Remotes.Shop.GetInventorySellPrice:InvokeServer()
@@ -18,31 +18,35 @@ Section:NewToggle("Auto Shaking", "No requires", function(state)
     stst = state
     prev = plr.Character.HumanoidRootPart.CFrame
     while stst == true and game:GetService("RunService").RenderStepped:Wait() do
-        plr.Character.HumanoidRootPart.CFrame = CFrame.new(-82, 9, 38)
-        for _, i in pairs(workspace.Characters[game.Players.LocalPlayer.Name]:GetChildren()) do
-            if i:FindFirstChild("Rewards") then
-                print(i.Name)
-                game.Players.LocalPlayer.Character[i.Name].Scripts.Pan:InvokeServer()
-                game.Players.LocalPlayer.Character[i.Name].Scripts.Shake:FireServer()
-                game.ReplicatedStorage.Remotes.Info.ClaimCollectionReward:FireServer(game.ReplicatedStorage.Items.Valuables.Ashvein.Name)
+        for isd = 0, 10 do
+            plr.Character.HumanoidRootPart.CFrame = CFrame.new(-82, 9, 38)
+            if (plr.Character.HumanoidRootPart.Position - Vector3.new(-82, 9, 38)).Magnitude < 6 then
+                plr.Character.Humanoid.WalkSpeed = 0
+                plr.Character.Humanoid.JumpHeight = 0
+                for _, i in pairs(workspace.Characters[game.Players.LocalPlayer.Name]:GetChildren()) do
+                    if i:FindFirstChild("Rewards") then
+                        print(i.Name)
+                        game.Players.LocalPlayer.Character[i.Name].Scripts.Pan:InvokeServer()
+                        game.Players.LocalPlayer.Character[i.Name].Scripts.Shake:FireServer()
+                        game.ReplicatedStorage.Remotes.Info.ClaimCollectionReward:FireServer(game.ReplicatedStorage.Items.Valuables.Ashvein.Name)
+                    end
+                end
             end
         end
-        plr.Character.HumanoidRootPart.Anchored = true
     end
+
     if stst == false then
-        plr.Character.HumanoidRootPart.CFrame = prev
-        plr.Character.HumanoidRootPart.Anchored = false
+        plr.Character.Humanoid.WalkSpeed = prevspeed
+        plr.Character.Humanoid.JumpHeight = prevjump
     end
 end)
 
-Section:NewToggle("Auto Pan (check info!!!)", "This is working in Private Servers only.", function(state)
+Section:NewToggle("Auto Pan (check info!!!)", "If it doesnt working then you can join in private servers", function(state)
     stst = state
     while stst == true do
         task.wait(0.00000001)
         for _, i in pairs(workspace.Characters[game.Players.LocalPlayer.Name]:GetChildren()) do
             if i:FindFirstChild("Rewards") then
-                plr.Character.Humanoid.WalkSpeed = 0
-                plr.Character.Humanoid.JumpPower = 0
                 plr.Character.Humanoid.AutoRotate = false
                 workspace:WaitForChild("Characters")[plr.Name][i.Name].Scripts.ToggleShovelActive:FireServer(true)
                 workspace:WaitForChild("Characters")[plr.Name][i.Name].Scripts.Pan:InvokeServer()
@@ -74,7 +78,7 @@ end)
 local Section = Tab:NewSection("Player")
 local newspeed = nil
 local newjump = nil
-Section:NewSlider("WalkSpeed Changer", "Recomended is 40-50", 75, 0, function(s) -- 500 (Макс. значение) | 0 (Мин. значение)
+Section:NewSlider("WalkSpeed", "Recomended is 40-50", 75, 0, function(s)
     newspeed = s
 end)
 
