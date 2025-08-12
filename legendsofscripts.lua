@@ -70,6 +70,21 @@ local Toggle = Tab:CreateToggle({
    end,
 })
 
+local Toggle = Tab:CreateToggle({
+   Name = "Auto Buy Swords",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+    stats2 = Value
+    while stats2 do
+        for _, i in pairs(game.ReplicatedStorage.Weapons.Ground:GetChildren()) do
+            game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer("buySword", i.Name)
+            task.wait()
+        end
+    end
+   end,
+})
+local Section = Tab:CreateSection("Player")
 local Slider = Tab:CreateSlider({
    Name = "WalkSpeed",
    Range = {0, 350},
@@ -84,5 +99,5 @@ local Slider = Tab:CreateSlider({
 
 
 local Tab = Window:CreateTab("Information")
-local Label = Tab:CreateLabel("Script Version: Beta 1")
-local Label = Tab:CreateLabel("Telegram Channel: t.me/gamescriptedrbx")
+local Label = Tab:CreateLabel("Script Version: Beta 2")
+local Label = Tab:CreateLabel("Telegram Channel:  t.me/gamescriptedrbx")
