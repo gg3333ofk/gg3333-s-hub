@@ -21,6 +21,7 @@ Section:NewButton("Finish the tower", "-- Fixed", function()
     end
     humanoidRootPart.Anchored = false
 end)
+local Section = Tab:NewSection("Other")
 local speed = nil
 local jump = nil
 local Section = Tab:NewSection("Player")
@@ -29,6 +30,14 @@ Section:NewSlider("WalkSpeed", "WalkSpeed", 150, 0, function(s)
 end)
 Section:NewSlider("Jump Boost", "WalkSpeed", 150, 0, function(s)
     jump = s
+end)
+local stat2 = nil
+Section:NewToggle("Godmode", "Godmode -- working", function(state)
+    stat2 = state
+    while task.wait() and stat2 do
+        game.Players.LocalPlayer.Character.Humanoid.MaxHealth = 10000
+        game.Players.LocalPlayer.Character.Humanoid.Health = 10000
+    end
 end)
 
 while game:GetService("RunService").RenderStepped:Wait() do
