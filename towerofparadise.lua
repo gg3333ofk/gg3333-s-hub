@@ -21,7 +21,6 @@ Section:NewButton("Finish the tower", "-- Fixed", function()
     end
     humanoidRootPart.Anchored = false
 end)
-local Section = Tab:NewSection("Other")
 local speed = nil
 local jump = nil
 local Section = Tab:NewSection("Player")
