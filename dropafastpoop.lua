@@ -3,6 +3,12 @@ local Window = Library.CreateLib("Drop a poop [BETA]", "RJTheme5")
 local Tab = Window:NewTab("Main")
 local Section = Tab:NewSection("Exploits/Farming")
 local stata = nil
+
+Section:NewButton("Buy All", "buying luckyfood", function()
+    for _, i in pairs(game.ReplicatedStorage.LuckyFoodModels:GetChildren()) do
+        game.ReplicatedStorage.Network["LuckyFoodShop:RequestPurchase"]:InvokeServer(i.Name)
+    end
+end)
 Section:NewToggle("Poop Exploit", "Fast poops", function(state)
     stata = state
     while stata == true and task.wait(0.0001) do
