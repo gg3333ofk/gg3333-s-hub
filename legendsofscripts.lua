@@ -88,6 +88,10 @@ local Toggle = Tab:CreateToggle({
             game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer("buySword", i.Name)
             task.wait()
         end
+        for _, i in pairs(game.ReplicatedStorage.Belts.Ground:GetChildren()) do
+            game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer("buyBelt", i.Name)
+            task.wait()
+        end
     end
    end,
 })
