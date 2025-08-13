@@ -44,7 +44,7 @@ sections.MainSection1:Button({
 	end,
 })
 sections.MainSection1:Button({
-	Name = "Kill Player(, Required Couch in inventory)",
+	Name = "Kill Player(Required Couch in inventory)",
 	Callback = function()
         plr2 = game.Players[plr3]
         local name = game.Players.LocalPlayer.Name
