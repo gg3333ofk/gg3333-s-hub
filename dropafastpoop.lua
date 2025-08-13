@@ -11,15 +11,6 @@ Section:NewButton("Buy All", "buying luckyfood", function()
         game.ReplicatedStorage.Network["LuckyFoodShop:RequestPurchase"]:InvokeServer(i.Name)
     end
 end)
-Section:NewToggle("Poop Exploit [IN FIXING]", "Fast poops", function(state)
-    stata1 = state
-    while stata1 == true and task.wait(0.0001) do
-        game.ReplicatedStorage.PoopChargeStart:FireServer()
-        game.ReplicatedStorage.PoopEvent:FireServer(2)
-        game.ReplicatedStorage.PoopChargeStart:FireServer()
-    end
-end)
-
 Section:NewToggle("Sell Exploit", "selling poop", function(state)
     stata2 = state
     while stata2 == true and task.wait(0.01) do
