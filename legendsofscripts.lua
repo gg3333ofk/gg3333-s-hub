@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local inpt = game:GetService("UserInputService")
 local Window = Rayfield:CreateWindow({
-   Name = "Ninja Legends [BETA]",
+   Name = "Ninja Legends Scripted",
    LoadingTitle = "Beta script",
    LoadingSubtitle = "by gg3333",
    ConfigurationSaving = {
