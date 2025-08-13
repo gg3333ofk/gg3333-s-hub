@@ -1,4 +1,5 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local inpt = game:GetService("UserInputService")
 local Window = Rayfield:CreateWindow({
    Name = "Ninja Legends [BETA]",
    LoadingTitle = "Beta script",
@@ -37,6 +38,9 @@ local Toggle = Tab:CreateToggle({
    Callback = function(Value)
     stata = Value
     while stata == true and task.wait() do
+        game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer("swingKatana")
+        game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer("swingKatana")
+        game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer("swingKatana")
         game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer("swingKatana")
     end
    end,
@@ -96,8 +100,27 @@ local Slider = Tab:CreateSlider({
     plr.Character.Humanoid.WalkSpeed = Value
    end,
 })
+local Toggle = Tab:CreateToggle({
+   Name = "Infinite Double Jump",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+    stats2 = Value
+    inpt.InputBegan:Connect(function(whatInputed)
+        if whatInputed.KeyCode == Enum.KeyCode.Space and stats2 == true then
+             plr.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+             task.wait(0.05)
+             plr.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+             task.wait(0.05)
+             plr.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+             task.wait(0.05)
+             plr.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+        end
+    end)
+   end,
+})
 
 
 local Tab = Window:CreateTab("Information")
-local Label = Tab:CreateLabel("Script Version: Beta 2")
+local Label = Tab:CreateLabel("Script Version: Release 1.0")
 local Label = Tab:CreateLabel("Telegram Channel:  t.me/gamescriptedrbx")
