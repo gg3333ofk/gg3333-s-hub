@@ -33,6 +33,7 @@ local stata = nil
 local stat3 = nil
 local stats2 = nil
 local stats23 = nil
+local stats233 = nil
 local Toggle = Tab:CreateToggle({
    Name = "Auto Click",
    CurrentValue = false,
@@ -111,17 +112,19 @@ local Toggle = Tab:CreateToggle({
     inpt.InputBegan:Connect(function(whatInputed)
         if whatInputed.KeyCode == Enum.KeyCode.Space and stats2 == true then
              plr.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
-             task.wait(0.05)
+             task.wait()
              plr.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
-             task.wait(0.05)
+             task.wait()
              plr.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
-             task.wait(0.05)
+             task.wait()
              plr.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+             task.wait()
+             plr.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+             task.wait()
         end
     end)
    end,
 })
-
 
 local Tab = Window:CreateTab("Information")
 local Label = Tab:CreateLabel("Script Version: Release 1.0")
