@@ -30,14 +30,16 @@ local Tab = Window:CreateTab("Main")
 
 local Section = Tab:CreateSection("Farming")
 local stata = nil
+local stat3 = nil
 local stats2 = nil
+local stats23 = nil
 local Toggle = Tab:CreateToggle({
    Name = "Auto Click",
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-    stata = Value
-    while stata == true and task.wait() do
+    stat3 = Value
+    while stat3 == true and task.wait() do
         game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer("swingKatana")
         game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer("swingKatana")
         game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer("swingKatana")
@@ -79,8 +81,8 @@ local Toggle = Tab:CreateToggle({
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-    stats2 = Value
-    while stats2 do
+    stats23 = Value
+    while stats23 do
         for _, i in pairs(game.ReplicatedStorage.Weapons.Ground:GetChildren()) do
             game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer("buySword", i.Name)
             task.wait()
