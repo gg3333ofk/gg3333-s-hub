@@ -1,7 +1,7 @@
 local MacLib = loadstring(game:HttpGet("https://github.com/biggaboy212/Maclib/releases/latest/download/maclib.txt"))()
 local Window = MacLib:Window({
 	Title = "Brookhaven Scripted",
-	Subtitle = "Version: Early Beta 3",
+	Subtitle = "Version: Beta 1",
 	Size = UDim2.fromOffset(868, 650),
 	DragStyle = 1,
 	DisabledWindowControls = {},
@@ -20,6 +20,7 @@ local tabs = {
 }
 local sections = {
 	MainSection1 = tabs.Main:Section({ Side = "Left" }),
+	MainSectionTp = tabs.Main:Section({ Side = "Left" }),
 	MainSection2 = tabs.Main2:Section({ Side = "Left" }),
 	MainSection3 = tabs.Main3:Section({ Side = "Left" }),
 	MainSection4 = tabs.Main3:Section({ Side = "Left" }),
@@ -27,6 +28,9 @@ local sections = {
 
 sections.MainSection1:Header({
 	Name = "Auto Kill"
+})
+sections.MainSectionTp:Header({
+	Name = "Other"
 })
 sections.MainSection3:Header({
 	Name = "Player"
@@ -37,14 +41,22 @@ sections.MainSection4:Header({
 local plr = game.Players.LocalPlayer
 local plr3 = nil
 local plr2 = nil
-sections.MainSection1:Input({
-	Name = "User's name",
-	Placeholder = "Write username",
-	AcceptedCharacters = "All",
-	Callback = function(input)
-		plr3 = input
+
+local plrs = {}
+for _, i in pairs(game.Players:GetPlayers()) do
+    table.insert(plrs, i.Name)
+end
+
+local Dropdown = sections.MainSection1:Dropdown({
+	Name = "Player",
+	Multi = false,
+	Required = true,
+	Options = plrs,
+	Default = 1,
+	Callback = function(Value)
+		plr3 = Value
 	end,
-})
+}, "Dropdown")
 
 sections.MainSection1:Button({
 	Name = "Get Couch",
@@ -77,7 +89,23 @@ sections.MainSection1:Button({
         end
 	end,
 })
-
+local plrtp = nil
+local Dropdown = sections.MainSectionTp:Dropdown({
+	Name = "Player:",
+	Multi = false,
+	Required = true,
+	Options = plrs,
+	Default = 1,
+	Callback = function(Value)
+		plrtp = Value
+	end,
+}, "Dropdown")
+sections.MainSectionTp:Button({
+	Name = "Tp to player",
+	Callback = function()
+        plr.Character.PrimaryPart.CFrame = game.Players[plrtp].Character.PrimaryPart.CFrame
+	end,
+})
 sections.MainSection2:Button({
 	Name = "Equip All Tools(Requires open tools menu)",
 	Callback = function()
