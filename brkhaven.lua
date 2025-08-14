@@ -84,7 +84,7 @@ sections.MainSection1:Button({
 	end,
 })
 local plrtp = nil
-sections.MainSection1:Input({
+sections.MainSectionTp:Input({
 	Name = "Player's name",
 	Placeholder = "Name",
 	AcceptedCharacters = "All",
