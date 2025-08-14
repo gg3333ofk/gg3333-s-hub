@@ -64,7 +64,7 @@ sections.MainSection1:Button({
             plr.Backpack.Couch.Parent = workspace[name]
             local prevpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
             task.wait(0.05)
-            for i = 0, 130 do
+            for i = 0, 100 do
                 plr.Character.HumanoidRootPart.CFrame = plr2.Character.PrimaryPart.CFrame + Vector3.new(0, -3.5, 0) 
                 task.wait()
             end
@@ -125,5 +125,15 @@ sections.MainSection4:Button({
 		        i:Destroy()
 		    end
 		end
+	end,
+})
+sections.MainSection4:Button({
+	Name = "Remove all doors",
+	Callback = function()
+        for _, i in pairs(workspace:GetDescendants()) do
+            if i.Name == "Door" or i.Name == "FakeDoor" or i.Name == "Doors" then
+                i:Destroy()
+            end
+        end
 	end,
 })
