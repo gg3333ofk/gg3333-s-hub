@@ -131,7 +131,7 @@ sections.MainSection4:Button({
 	Name = "Remove all doors",
 	Callback = function()
         for _, i in pairs(workspace:GetDescendants()) do
-            if i.Name == "Door" or i.Name == "FakeDoor" or i.Name == "Doors" then
+            if i.Name == "Door" or i.Name == "FakeDoor" or i.Name == "Doors" or i.Name == "Frame" or i.Name == "DoorRight" then
                 i:Destroy()
             end
         end
