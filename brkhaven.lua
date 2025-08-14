@@ -42,21 +42,15 @@ local plr = game.Players.LocalPlayer
 local plr3 = nil
 local plr2 = nil
 
-local plrs = {}
-for _, i in pairs(game.Players:GetPlayers()) do
-    table.insert(plrs, i.Name)
-end
 
-local Dropdown = sections.MainSection1:Dropdown({
-	Name = "Player",
-	Multi = false,
-	Required = true,
-	Options = plrs,
-	Default = 1,
-	Callback = function(Value)
-		plr3 = Value
+sections.MainSection1:Input({
+	Name = "Player's name",
+	Placeholder = "Name",
+	AcceptedCharacters = "All",
+	Callback = function(input)
+		plr3 = input
 	end,
-}, "Dropdown")
+}, "Input")
 
 sections.MainSection1:Button({
 	Name = "Get Couch",
@@ -90,16 +84,14 @@ sections.MainSection1:Button({
 	end,
 })
 local plrtp = nil
-local Dropdown = sections.MainSectionTp:Dropdown({
-	Name = "Player:",
-	Multi = false,
-	Required = true,
-	Options = plrs,
-	Default = 1,
-	Callback = function(Value)
-		plrtp = Value
+sections.MainSection1:Input({
+	Name = "Player's name",
+	Placeholder = "Name",
+	AcceptedCharacters = "All",
+	Callback = function(input)
+		plrtp = input
 	end,
-}, "Dropdown")
+}, "Input")
 sections.MainSectionTp:Button({
 	Name = "Tp to player",
 	Callback = function()
