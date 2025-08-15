@@ -1,7 +1,7 @@
 local MacLib = loadstring(game:HttpGet("https://github.com/biggaboy212/Maclib/releases/latest/download/maclib.txt"))()
 local Window = MacLib:Window({
 	Title = "Brookhaven Scripted",
-	Subtitle = "Version: Beta 1",
+	Subtitle = "Version: Beta 2",
 	Size = UDim2.fromOffset(868, 650),
 	DragStyle = 1,
 	DisabledWindowControls = {},
