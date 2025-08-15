@@ -16,9 +16,12 @@ local tabs = {
 	Main = tabGroups.TabGroup1:Tab({ Name = "Players"}),
 	Main2 = tabGroups.TabGroup1:Tab({ Name = "Tools"}),
 	Main3 = tabGroups.TabGroup1:Tab({ Name = "Local Player"}),
+	Main4 = tabGroups.TabGroup1:Tab({ Name = "Fun"}),
 	
 }
 local sections = {
+	MainSection6 = tabs.Main4:Section({ Side = "Left" }),
+	MainSection5 = tabs.Main:Section({ Side = "Left" }),
 	MainSection1 = tabs.Main:Section({ Side = "Left" }),
 	MainSectionTp = tabs.Main:Section({ Side = "Left" }),
 	MainSection2 = tabs.Main2:Section({ Side = "Left" }),
@@ -52,7 +55,7 @@ sections.MainSection1:Input({
 	end,
 }, "Input")
 
-sections.MainSection1:Button({
+sections.MainSection5:Button({
 	Name = "Get Couch",
 	Callback = function()
         plr.Character.PrimaryPart.CFrame = workspace.WorkspaceCom["003_CouchGiveTool"].Main.CFrame + Vector3.new(0, 1, 0)
@@ -154,6 +157,37 @@ sections.MainSection4:Button({
             if i.Name == "Door" or i.Name == "FakeDoor" or i.Name == "Doors" or i.Name == "Frame" or i.Name == "DoorRight" then
                 i:Destroy()
             end
+        end
+	end,
+})
+sections.MainSectionTp:Button({
+	Name = "Tp player to you(Required Couch in inventory)",
+	Callback = function()
+        local name = game.Players.LocalPlayer.Name
+        if workspace[name]:FindFirstChild("Couch") then
+            workspace[name].Couch.Parent = plr.Backpack
+        end
+        if plr.Backpack:FindFirstChild("Couch") then
+            plr.Backpack.Couch.Parent = workspace[name]
+            local prevpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            task.wait(0.05)
+            for i = 0, 100 do
+                plr.Character.HumanoidRootPart.CFrame = game.Players[plrtp].Character.PrimaryPart.CFrame + Vector3.new(0, -3.5, 0) 
+                task.wait()
+            end
+            plr.Character.HumanoidRootPart.CFrame = prevpos
+            task.wait(0.5)
+            workspace[name].Couch.Parent = plr.Backpack
+            
+        end
+	end,
+})
+sections.MainSection6:Button({
+	Name = "Spawn all cars(Required open car menu)",
+	Callback = function()
+        for _, i in pairs(game:GetService("ReplicatedStorage").UiClone.DealershipUI1.MainVehicleMenu.Catalog.Container.ScrollingFrame:GetChildren()) do
+            game:GetService("ReplicatedStorage"):WaitForChild("RE"):WaitForChild("1Ca1r"):FireServer("PickingCar", i.Name)
+            task.wait()
         end
 	end,
 })
