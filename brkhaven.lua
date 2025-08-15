@@ -1,8 +1,8 @@
 local MacLib = loadstring(game:HttpGet("https://github.com/biggaboy212/Maclib/releases/latest/download/maclib.txt"))()
 local Window = MacLib:Window({
 	Title = "Brookhaven Scripted",
-	Subtitle = "Version: Beta 2",
-	Size = UDim2.fromOffset(868, 650),
+	Subtitle = "Version: Release 1.0",
+	Size = UDim2.fromOffset(890, 570),
 	DragStyle = 1,
 	DisabledWindowControls = {},
 	ShowUserInfo = true,
@@ -16,17 +16,16 @@ local tabs = {
 	Main = tabGroups.TabGroup1:Tab({ Name = "Players"}),
 	Main2 = tabGroups.TabGroup1:Tab({ Name = "Tools"}),
 	Main3 = tabGroups.TabGroup1:Tab({ Name = "Local Player"}),
-	Main4 = tabGroups.TabGroup1:Tab({ Name = "Fun"}),
 	
 }
 local sections = {
-	MainSection6 = tabs.Main4:Section({ Side = "Left" }),
 	MainSection5 = tabs.Main:Section({ Side = "Left" }),
 	MainSection1 = tabs.Main:Section({ Side = "Left" }),
-	MainSectionTp = tabs.Main:Section({ Side = "Left" }),
+	MainSectionTp = tabs.Main:Section({ Side = "Right" }),
 	MainSection2 = tabs.Main2:Section({ Side = "Left" }),
 	MainSection3 = tabs.Main3:Section({ Side = "Left" }),
 	MainSection4 = tabs.Main3:Section({ Side = "Left" }),
+	MainSection7 = tabs.Main3:Section({ Side = "Other" }),
 }
 
 sections.MainSection1:Header({
@@ -37,6 +36,9 @@ sections.MainSectionTp:Header({
 })
 sections.MainSection3:Header({
 	Name = "Player"
+})
+sections.MainSection7:Header({
+	Name = "Other"
 })
 sections.MainSection4:Header({
 	Name = "Houses"
@@ -54,11 +56,23 @@ sections.MainSection1:Input({
 		plr3 = input
 	end,
 }, "Input")
-
+local prevcframeofseat = nil
 sections.MainSection5:Button({
 	Name = "Get Couch",
 	Callback = function()
-        plr.Character.PrimaryPart.CFrame = workspace.WorkspaceCom["003_CouchGiveTool"].Main.CFrame + Vector3.new(0, 1, 0)
+	    prevcframeofseat = workspace.WorkspaceCom["003_CouchGiveTool"]:WaitForChild("Seat1").CFrame
+        workspace.WorkspaceCom:WaitForChild("003_CouchGiveTool"):WaitForChild("Seat1").CFrame = plr.Character.PrimaryPart.CFrame
+        workspace.WorkspaceCom:WaitForChild("003_CouchGiveTool"):WaitForChild("Seat1").CanCollide = false
+        while task.wait() do
+            if plr.Character.Humanoid:GetState() == Enum.HumanoidStateType.Seated then
+                plr.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+                plr.Character.PrimaryPart.CFrame = plr.Character.PrimaryPart.CFrame + Vector3.new(0, 5, 0)
+                task.wait(0.25)
+                workspace.WorkspaceCom["003_CouchGiveTool"]:WaitForChild("Seat1").CFrame = prevcframeofseat
+                workspace.WorkspaceCom:WaitForChild("003_CouchGiveTool"):WaitForChild("Seat1").CanCollide = true
+                break
+            end
+        end
 	end,
 })
 sections.MainSection1:Button({
@@ -182,12 +196,16 @@ sections.MainSectionTp:Button({
         end
 	end,
 })
-sections.MainSection6:Button({
-	Name = "Spawn all cars(Required open car menu)",
+sections.MainSection7:Button({
+	Name = "Anti Seat(Forever) [IN DEV]",
 	Callback = function()
-        for _, i in pairs(game:GetService("ReplicatedStorage").UiClone.DealershipUI1.MainVehicleMenu.Catalog.Container.ScrollingFrame:GetChildren()) do
-            game:GetService("ReplicatedStorage"):WaitForChild("RE"):WaitForChild("1Ca1r"):FireServer("PickingCar", i.Name)
-            task.wait()
-        end
+        for _, i in pairs(workspace:GetDescendants()) do
+            if i.ClassName == "Seat" and i.Parent.Name ~= "Couch" then
+                i:Destroy()
+            end
+		end
 	end,
+})
+sections.MainSection7:Label({
+	Text = "When activated, Get Couch will not be working."
 })
