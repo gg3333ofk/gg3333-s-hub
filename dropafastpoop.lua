@@ -11,7 +11,7 @@ Section:NewButton("Buy All", "buying luckyfood", function()
         game.ReplicatedStorage.Network["LuckyFoodShop:RequestPurchase"]:InvokeServer(i.Name)
     end
 end)
-Section:NewToggle("Poop Exploit", "buying luckyfood", function(state)
+Section:NewToggle("Poop Exploit", "fixed", function(state)
     stata3 = state
     while task.wait() and stata3 do
         game.ReplicatedStorage:FindFirstChild("PoopChargeStart"):FireServer()
@@ -28,9 +28,16 @@ Section:NewToggle("Sell Exploit", "selling poop", function(state)
         game.ReplicatedStorage.Sell_Inventory:FireServer()
     end
 end)
+local stata4 = nil
+Section:NewToggle("Pet Exploit", "Pet dupe", function(state)
+    stata4 = state
+    while task.wait(0.15) and stata4 do
+        for i = 0, 10 do
+            game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Pets: Egg Service"):FireServer("HatchPet", workspace:WaitForChild("Eggs"):WaitForChild("PetEgg"))
+        end
+    end
+end)
 local Section = Tab:NewSection("Viewer")
-local inpt = game:GetService("UserInputService")
-local prev = workspace.LuckyFoodShopNPC.Torso.ProximityPrompt.MaxActivationDistance
 Section:NewButton("View Stock", "Stock Viewer", function()
     fireproximityprompt(workspace.LuckyFoodShopNPC.Torso.ProximityPrompt)
 end)
