@@ -1,7 +1,7 @@
 local MacLib = loadstring(game:HttpGet("https://github.com/biggaboy212/Maclib/releases/latest/download/maclib.txt"))()
 local Window = MacLib:Window({
 	Title = "Brookhaven Scripted",
-	Subtitle = "Version: Release 1.1",
+	Subtitle = "Version: Release 1.5",
 	Size = UDim2.fromOffset(890, 570),
 	DragStyle = 1,
 	DisabledWindowControls = {},
@@ -87,16 +87,18 @@ sections.MainSection1:Button({
             plr.Backpack.Couch.Parent = workspace[name]
             local prevpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
             task.wait(0.05)
-            for i = 0, 100 do
-                plr.Character.HumanoidRootPart.CFrame = plr2.Character.PrimaryPart.CFrame + Vector3.new(0, -3.5, 0) 
-                task.wait()
+            while task.wait() do
+                plr.Character.HumanoidRootPart.CFrame = plr2.Character.PrimaryPart.CFrame + Vector3.new(0, -3.5, 0)
+                if plr2.Character.Humanoid:GetState() == Enum.HumanoidStateType.Seated then
+                    task.wait(0.08)
+                    plr.Character.HumanoidRootPart.CFrame = CFrame.new(100000, 25, 0)
+                    task.wait(0.80)
+                    workspace[name].Couch.Parent = plr.Backpack
+                    task.wait(0.3)
+                    plr.Character.HumanoidRootPart.CFrame = prevpos
+                    break
+                end
             end
-            plr.Character.HumanoidRootPart.CFrame = CFrame.new(100000, 25, 0)
-            task.wait(0.80)
-            workspace[name].Couch.Parent = plr.Backpack
-            task.wait(0.3)
-            plr.Character.HumanoidRootPart.CFrame = prevpos
-            
         end
 	end,
 })
@@ -185,13 +187,15 @@ sections.MainSectionTp:Button({
             plr.Backpack.Couch.Parent = workspace[name]
             local prevpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
             task.wait(0.05)
-            for i = 0, 100 do
-                plr.Character.HumanoidRootPart.CFrame = game.Players[plrtp].Character.PrimaryPart.CFrame + Vector3.new(0, -3.5, 0) 
-                task.wait()
+            while task.wait() do
+                plr.Character.HumanoidRootPart.CFrame = game.Players[plrtp].Character.PrimaryPart.CFrame + Vector3.new(0, -3.5, 0)
+                if game.Players[plrtp].Character.Humanoid:GetState() == Enum.HumanoidStateType.Seated then
+                    plr.Character.HumanoidRootPart.CFrame = prevpos
+                    task.wait(0.5)
+                    workspace[name].Couch.Parent = plr.Backpack
+                    break
+                end
             end
-            plr.Character.HumanoidRootPart.CFrame = prevpos
-            task.wait(0.5)
-            workspace[name].Couch.Parent = plr.Backpack
             
         end
 	end,
