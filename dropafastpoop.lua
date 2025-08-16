@@ -1,5 +1,5 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Robojini/Tuturial_UI_Library/main/UI_Template_1"))()
-local Window = Library.CreateLib("Drop a poop [BETA]", "RJTheme5")
+local Window = Library.CreateLib("Drop a poop Scripted", "RJTheme5")
 local Tab = Window:NewTab("Main")
 local Section = Tab:NewSection("Exploits/Farming")
 local stata = nil
@@ -31,13 +31,6 @@ end)
 local Section = Tab:NewSection("Viewer")
 local inpt = game:GetService("UserInputService")
 local prev = workspace.LuckyFoodShopNPC.Torso.ProximityPrompt.MaxActivationDistance
-Section:NewToggle("LuckyFood Shop Stock Viewer(Check info!!!!!)", "Press button 'E' 2 times", function(state)
-    stata = state
-    inpt.InputBegan:Connect(function(key)
-        if key.KeyCode == Enum.KeyCode.E and stata then
-            workspace.LuckyFoodShopNPC.Torso.ProximityPrompt.MaxActivationDistance = 1000000
-            task.wait(1.5)
-            workspace.LuckyFoodShopNPC.Torso.ProximityPrompt.MaxActivationDistance = prev
-        end
-    end)
+Section:NewButton("View Stock", "Stock Viewer", function()
+    fireproximityprompt(workspace.LuckyFoodShopNPC.Torso.ProximityPrompt)
 end)
