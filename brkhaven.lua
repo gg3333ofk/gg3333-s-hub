@@ -1,7 +1,7 @@
 local MacLib = loadstring(game:HttpGet("https://github.com/biggaboy212/Maclib/releases/latest/download/maclib.txt"))()
 local Window = MacLib:Window({
 	Title = "Brookhaven Scripted",
-	Subtitle = "Version: Release 1.0",
+	Subtitle = "Version: Release 1.1",
 	Size = UDim2.fromOffset(890, 570),
 	DragStyle = 1,
 	DisabledWindowControls = {},
@@ -196,16 +196,15 @@ sections.MainSectionTp:Button({
         end
 	end,
 })
-sections.MainSection7:Button({
-	Name = "Anti Seat(Forever) [IN DEV]",
-	Callback = function()
-        for _, i in pairs(workspace:GetDescendants()) do
-            if i.ClassName == "Seat" and i.Parent.Name ~= "Couch" then
-                i:Destroy()
+sections.MainSection7:Toggle({
+	Name = "Anti Seat [In dev]",
+	Default = false,
+	Callback = function(value)
+        getgenv().antisit = value
+        while antisit and task.wait() do
+            if plr.Character.Humanoid:GetState() == Enum.HumanoidStateType.Seated then
+                plr.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
             end
-		end
+        end
 	end,
-})
-sections.MainSection7:Label({
-	Text = "When activated, Get Couch will not be working."
-})
+}, "Toggle")
